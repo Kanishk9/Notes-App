@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 
+import {useNoteStore} from '../storage/noteStore';
+
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
@@ -27,19 +29,27 @@ const NoteEditorScreen = ({route, navigation}) => {
   const [callImagePicker, setCallImagePicker] = useState(false);
   const [isColorPickerVisible, setIsColorPickerVisible] = useState(false);
 
+  const addNote = useNoteStore(state => state.addNote);
+  const editNote = useNoteStore(state => state.editNote);
 
+  //Handle Save button click
   const saveBtnHandler = () => {
     const newNote = {
       id: note?.id || Date.now().toString(),
       title,
       content,
-      creationDate: getCurrentDateEU(),
+      creationDate: note?.createdAt || getCurrentDateEU(),
       backgroundColor,
       headerImage,
     };
 
-    console.log(newNote);
+    if (note) {
+      editNote(newNote);
+    } else {
+      addNote(newNote);
+    }
 
+    //After saving navigate back to home screen
     navigation.goBack();
   };
 
@@ -53,6 +63,7 @@ const NoteEditorScreen = ({route, navigation}) => {
     setIsColorPickerVisible(!isColorPickerVisible);
   };
 
+  //Funtion to open image picker
   const imagePickerBtnHandler = () => {
     setCallImagePicker(true);
   };
@@ -130,9 +141,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: '600',
     color: '#FFFFFF',
-  },
-  btn: {
-    // padding: 100,
   },
   imageContainer: {
     flexDirection: 'row',

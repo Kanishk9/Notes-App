@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Text, FlatList} from 'react-native';
+
+import {useNoteStore} from '../storage/noteStore';
 
 import NoteItem from '../components/NoteItem';
 import Button from '../components/Button';
@@ -11,20 +13,13 @@ const HomeScreen = ({navigation}) => {
     id: '',
   });
 
-  const [notes, setNotes] = useState([
-    {id: 1, title: 'title1', content: 'content1', creationDate: '21/09/2024',backgroundColor: '#7cf7a1'},
-    {id: 2, title: 'title2', content: 'content2', creationDate: '21/09/2024',backgroundColor: '#ff1e48'},
-    {id: 3, title: 'title3', content: 'content3', creationDate: '21/09/2024',backgroundColor: '#ffffff'},
-  ]);
+  const notes = useNoteStore(state => state.notes);
+  const loadNotes = useNoteStore(state => state.loadNotes);
+  const deleteNote = useNoteStore(state => state.deleteNote);
 
-  const deleteNote = id => {
-    const updatedNotes = notes.filter(note => {
-      if (note.id !== id) {
-        return true;
-      }
-    });
-    setNotes(updatedNotes);
-  };
+  useEffect(() => {
+    loadNotes();
+  }, []);
 
   const addBtnHandler = () => {
     navigation.navigate('NoteEditorScreen');
