@@ -7,12 +7,15 @@ const NoteItem = ({note, handleOnPress, setAlert}) => {
   //Destructuring note object
   const {id, title, creationDate, backgroundColor} = note;
 
+  //Delete button handler which opens Delete confirmation modal
   const deleteBtnHandler = () => {
     setAlert({isAlert: true, id: id});
   };
 
   return (
-    <TouchableOpacity style={[styles.container, {backgroundColor}]} onPress={handleOnPress}>
+    <TouchableOpacity
+      style={[styles.container, {backgroundColor}]}
+      onPress={handleOnPress}>
       <View>
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>{title}</Text>
