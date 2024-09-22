@@ -23,7 +23,7 @@ This is a note-taking application built with React Native and Expo, featuring lo
 ## Screen Shots
 * Home Screen
 ![Screenshot (61)](https://github.com/user-attachments/assets/dc6aff21-43f6-4c1f-9814-62751fc8e40c)
-
+<br />
 
 * Add/Edit Note Screen
 ![Screenshot (62)](https://github.com/user-attachments/assets/4676b9bf-89c7-4c5b-afe1-44e27432588c)
