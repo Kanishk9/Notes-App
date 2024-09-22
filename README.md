@@ -27,6 +27,9 @@ This is a note-taking application built with React Native and Expo, featuring lo
 * Add/Edit Note Screen\
 ![Screenshot (62)](https://github.com/user-attachments/assets/4676b9bf-89c7-4c5b-afe1-44e27432588c)
 
+* Delete Note Confirmation
+![Screenshot (69)](https://github.com/user-attachments/assets/3ffaf47f-b94f-49c4-a4cd-2cdd6a092e2c)
+
 * Color Picker\
 ![Screenshot (63)](https://github.com/user-attachments/assets/13a6fdc8-779b-4985-b46c-977aba2c4fea)
 
