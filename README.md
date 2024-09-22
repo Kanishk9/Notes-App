@@ -1,4 +1,4 @@
-# Expo Note-Taking App
+# Notes App
 
 This is a note-taking application built with React Native and Expo, featuring local storage using expo-secure-store, state management with zustand, and image handling with expo-image-picker. Users can create, edit, and delete notes with a title, content, background color, and optional header image. Notes can also be sorted by name or creation date.
 
