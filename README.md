@@ -19,3 +19,26 @@ This is a note-taking application built with React Native and Expo, featuring lo
 * react-native-vector-icons
 * expo-image-picker
 * react-native-wheel-color-picker
+
+## Folder Structure
+```bash
+expo-note-taking-app/
+├── src/
+│   ├── components/
+│   │   ├── Button.jsx            # Component for button
+│   │   ├── ColorPicker.jsx       # Component for color picker modal
+│   │   ├── DeleteWarnModal.jsx   # Component for deletion confirmation
+│   │   ├── HeaderImagePicker.jsx # Component for picking an image
+│   │   └── NoteItem.jsx          # Component for displaying individual note
+│   ├── screens/
+│   │   ├── HomeScreens.jsx       # Screen for displaying notes
+│   │   └── NoteEditor.jsx        # Screen for creating/editing notes
+│   ├── storage/
+│   │   └── noteStore.js          # Zustand store for managing notes
+│   │   └── storage.js            # For managing storage with expo-secure-store
+│   ├── utils/
+│   │   └── util.js               # Utility for additional functionality
+├── App.tsx                            # Entry point of the app
+├── package.json                       # Project dependencies and scripts
+└── README.md                          # Project documentation (this file)
+```
