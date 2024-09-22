@@ -8,26 +8,25 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 
-import {useNoteStore} from '../storage/noteStore';
-
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import Button from '../components/Button';
 import {getCurrentDateEU} from '../utils/utils';
 import ColourPicker from '../components/ColourPicker';
+import HeaderImagePicker from '../components/HeaderImagePicker';
 
 const NoteEditorScreen = ({route, navigation}) => {
   const note = route.params;
   const [title, setTitle] = useState(note?.title || '');
   const [content, setContent] = useState(note?.content || '');
+  const [headerImage, setHeaderImage] = useState(note?.headerImage || null);
   const [backgroundColor, setBackgroundColor] = useState(
     note?.backgroundColor || '#7cf7a1',
   );
+  const [callImagePicker, setCallImagePicker] = useState(false);
   const [isColorPickerVisible, setIsColorPickerVisible] = useState(false);
 
-  //   const addNote = useNoteStore(state => state.addNote);
-  //   const editNote = useNoteStore(state => state.editNote);
 
   const saveBtnHandler = () => {
     const newNote = {
@@ -36,17 +35,10 @@ const NoteEditorScreen = ({route, navigation}) => {
       content,
       creationDate: getCurrentDateEU(),
       backgroundColor,
+      headerImage,
     };
 
     console.log(newNote);
-
-    // if (note) {
-    //   // Edit existing note
-    //   editNote(newNote);
-    // } else {
-    //   // Add new note
-    //   addNote(newNote);
-    // }
 
     navigation.goBack();
   };
@@ -54,6 +46,15 @@ const NoteEditorScreen = ({route, navigation}) => {
   //Function to copy content to clipboard
   const clipboardBtnHandler = () => {
     Clipboard.setString(content);
+  };
+
+  //Funtion to open color picker
+  const colorPickerBtnHandler = () => {
+    setIsColorPickerVisible(!isColorPickerVisible);
+  };
+
+  const imagePickerBtnHandler = () => {
+    setCallImagePicker(true);
   };
 
   return (
@@ -65,15 +66,23 @@ const NoteEditorScreen = ({route, navigation}) => {
         <Button title="SAVE" btnPressHandler={saveBtnHandler} />
       </View>
       <View style={{flex: 1, padding: 10, backgroundColor}}>
-        <TextInput
-          style={styles.titleContainer}
-          placeholder="Note Title"
-          value={title}
-          onChangeText={setTitle}
-        />
+        <View style={styles.imageContainer}>
+          <HeaderImagePicker
+            callImagePicker={callImagePicker}
+            setCallImagePicker={setCallImagePicker}
+            headerImage={headerImage}
+            setHeaderImage={setHeaderImage}
+          />
+          <TextInput
+            style={styles.titleContainer}
+            placeholder="Title"
+            value={title}
+            onChangeText={setTitle}
+          />
+        </View>
         <TextInput
           style={styles.contentContainer}
-          placeholder="Note Content"
+          placeholder="Content"
           value={content}
           onChangeText={setContent}
           multiline={true}
@@ -85,11 +94,10 @@ const NoteEditorScreen = ({route, navigation}) => {
           <TouchableOpacity onPress={clipboardBtnHandler}>
             <FontAwesome name="clipboard" size={30} />
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => setIsColorPickerVisible(!isColorPickerVisible)}>
+          <TouchableOpacity onPress={colorPickerBtnHandler}>
             <MaterialIcons name="color-lens" size={30} />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={imagePickerBtnHandler}>
             <FontAwesome name="image" size={30} />
           </TouchableOpacity>
         </View>
@@ -125,6 +133,12 @@ const styles = StyleSheet.create({
   },
   btn: {
     // padding: 100,
+  },
+  imageContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    margin: 10,
   },
   titleContainer: {
     padding: 20,

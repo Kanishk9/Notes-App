@@ -1,7 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Text, FlatList} from 'react-native';
-
-import {useNoteStore} from '../storage/noteStore';
 
 import NoteItem from '../components/NoteItem';
 import Button from '../components/Button';
@@ -12,16 +10,6 @@ const HomeScreen = ({navigation}) => {
     isAlert: false,
     id: '',
   });
-
-  //   const {notes, getNote, deleteNote} = useNoteStore(state => ({
-  //     notes: state.notes,
-  //     getNote: state.getNote,
-  //     deleteNote: state.deleteNote,
-  //   }));
-
-  //   useEffect(() => {
-  //     getNote();
-  //   }, [getNote]);
 
   const [notes, setNotes] = useState([
     {id: 1, title: 'title1', content: 'content1', creationDate: '21/09/2024',backgroundColor: '#7cf7a1'},
