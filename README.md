@@ -21,18 +21,17 @@ This is a note-taking application built with React Native and Expo, featuring lo
 * react-native-wheel-color-picker
 
 ## Screen Shots
-Home Screen\
+* Home Screen\
 ![Screenshot (61)](https://github.com/user-attachments/assets/dc6aff21-43f6-4c1f-9814-62751fc8e40c)
 
-Add/Edit Note Screen\
+* Add/Edit Note Screen\
 ![Screenshot (62)](https://github.com/user-attachments/assets/4676b9bf-89c7-4c5b-afe1-44e27432588c)
 
-Color Picker\
+* Color Picker\
 ![Screenshot (63)](https://github.com/user-attachments/assets/13a6fdc8-779b-4985-b46c-977aba2c4fea)
 
-Image Picker\
+* Image Picker\
 ![Screenshot (64)](https://github.com/user-attachments/assets/81fbb501-e099-41bc-8cfb-af3dc3754082)
-
 
 ## Folder Structure
 ```bash
