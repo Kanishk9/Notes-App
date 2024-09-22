@@ -35,7 +35,6 @@ export const useNoteStore = create((set, get) => ({
       notes: [...notes, newNote],
       noteKeys: updatedKeys,
     });
-    console.log(notes);
   },
 
   // Edit note
@@ -62,5 +61,19 @@ export const useNoteStore = create((set, get) => ({
       notes: notes.filter(note => note.id !== id),
       noteKeys: updatedKeys,
     });
+  },
+
+  // Sort notes by name
+  sortNotesByName: () => {
+    set(state => ({
+      notes: [...state.notes].sort((a, b) => a.title.localeCompare(b.title)),
+    }));
+  },
+
+  // Sort notes by creation date
+  sortNotesByCreationDate: () => {
+    set(state => ({
+      notes: [...state.notes].sort((a, b) => b.createdAt - a.createdAt),
+    }));
   },
 }));

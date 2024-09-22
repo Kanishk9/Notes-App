@@ -1,5 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Text, FlatList} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 
 import {useNoteStore} from '../storage/noteStore';
 
@@ -16,6 +22,10 @@ const HomeScreen = ({navigation}) => {
   const notes = useNoteStore(state => state.notes);
   const loadNotes = useNoteStore(state => state.loadNotes);
   const deleteNote = useNoteStore(state => state.deleteNote);
+  const sortNotesByName = useNoteStore(state => state.sortNotesByName);
+  const sortNotesByCreationDate = useNoteStore(
+    state => state.sortNotesByCreationDate,
+  );
 
   useEffect(() => {
     loadNotes();
@@ -30,6 +40,15 @@ const HomeScreen = ({navigation}) => {
       <View style={styles.headerContainer}>
         <Text style={styles.headingText}>Your Notes</Text>
         <Button title="Create New Note +" btnPressHandler={addBtnHandler} />
+      </View>
+      <View style={styles.sortContainer}>
+        <Text style={styles.sortText}>SORT BY:- </Text>
+        <TouchableOpacity onPress={sortNotesByName}>
+          <Text style={styles.sortText}>Name</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={sortNotesByCreationDate}>
+          <Text style={styles.sortText}>Date</Text>
+        </TouchableOpacity>
       </View>
       <FlatList
         data={notes}
@@ -70,5 +89,16 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: '600',
     color: '#FFFFFF',
+  },
+  sortContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    paddingVertical: 5,
+  },
+  sortText: {
+    color: '#ffffff',
+    fontSize: 18,
+    fontWeight: '400',
   },
 });
