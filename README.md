@@ -47,8 +47,8 @@ expo-note-taking-app/
 │   │   ├── HeaderImagePicker.jsx # Component for picking an image
 │   │   └── NoteItem.jsx          # Component for displaying individual note
 │   ├── screens/
-│   │   ├── HomeScreens.jsx       # Screen for displaying notes
-│   │   └── NoteEditor.jsx        # Screen for creating/editing notes
+│   │   ├── HomeScreen.jsx       # Screen for displaying notes
+│   │   └── NoteEditorScreen.jsx        # Screen for creating/editing notes
 │   ├── storage/
 │   │   └── noteStore.js          # Zustand store for managing notes
 │   │   └── storage.js            # For managing storage with expo-secure-store
